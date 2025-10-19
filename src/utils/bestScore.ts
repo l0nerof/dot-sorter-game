@@ -1,11 +1,8 @@
+import type { BestScoreType } from "../types";
+
 const BEST_SCORE_KEY = "duck-sorter-best-score";
 
-export interface BestScore {
-  time: number;
-  date: string;
-}
-
-export const getBestScore = (): BestScore | null => {
+export const getBestScore = (): BestScoreType | null => {
   try {
     const stored = localStorage.getItem(BEST_SCORE_KEY);
     if (!stored) return null;
@@ -21,7 +18,7 @@ export const saveBestScore = (time: number): boolean => {
 
     // Save if no best score exists or if new time is better (lower)
     if (!currentBest || time < currentBest.time) {
-      const newBest: BestScore = {
+      const newBest: BestScoreType = {
         time,
         date: new Date().toISOString(),
       };

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { TIMER_UPDATE_INTERVAL_MS } from "../constants/game";
 
 /**
@@ -26,9 +26,9 @@ export const useGameTimer = () => {
     setTimer(0);
   };
 
-  const getElapsedTime = () => {
+  const getElapsedTime = useCallback(() => {
     return (Date.now() - startTimeRef.current) / 1000;
-  };
+  }, []);
 
   return { timer, resetTimer, getElapsedTime };
 };

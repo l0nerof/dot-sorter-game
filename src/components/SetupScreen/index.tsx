@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { type BestScore, getBestScore } from "../../utils/bestScore";
+import { useState } from "react";
 import Button from "../Button";
+import BestScore from "./components/BestScore";
 import GameSettings from "./components/GameSettings";
 import Rules from "./components/Rules";
 
@@ -11,21 +11,13 @@ type SetupScreenProps = {
 function SetupScreen({ onStart }: SetupScreenProps) {
   const [duckCount, setDuckCount] = useState(6); // 3 points per color by default
   const [colorCount, setColorCount] = useState(2);
-  const [bestScore, setBestScore] = useState<BestScore | null>(null);
-
-  useEffect(() => {
-    // Load best score on mount
-    const score = getBestScore();
-    setBestScore(score);
-  }, []);
-
   // Calculate the number of points per color
   const ducksPerColor = Math.floor(duckCount / colorCount);
   const totalDucks = ducksPerColor * colorCount;
 
   // Validation: ensure minimum challenge
   const isValidConfiguration = () => {
-    // Точки мають ділитися рівномірно на кольори
+    // Ducks must be distributed evenly among colors
     if (duckCount !== totalDucks) return false;
 
     // Minimum 3 points per color to create a challenge
@@ -68,27 +60,7 @@ function SetupScreen({ onStart }: SetupScreenProps) {
           isValid={isValidConfiguration()}
         />
 
-        {bestScore && (
-          <div className="flex flex-col items-center gap-2 rounded-xl border border-yellow-400/30 bg-yellow-400/10 p-4">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">🏆</span>
-              <p className="text-lg font-bold text-yellow-400">
-                Найкращий результат
-              </p>
-            </div>
-            <p className="text-3xl font-bold text-white">
-              {bestScore.time.toFixed(1)}
-              <span className="text-xl text-white/70">с</span>
-            </p>
-            <p className="text-xs text-white/50">
-              {new Date(bestScore.date).toLocaleDateString("uk-UA", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
-          </div>
-        )}
+        <BestScore />
 
         <Button onClick={handleStart} disabled={!isValidConfiguration()}>
           Почати гру

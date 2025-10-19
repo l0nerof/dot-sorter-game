@@ -6,7 +6,7 @@ import { Vector2D } from "../lib/Vector2D";
  * Returns ref to current mouse position
  */
 export const useMouseTracking = (
-  canvasRef: React.RefObject<HTMLCanvasElement>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
 ) => {
   const mouseRef = useRef(new Vector2D(0, 0));
 

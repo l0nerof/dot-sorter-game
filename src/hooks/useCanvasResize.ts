@@ -4,7 +4,7 @@ import { useEffect } from "react";
  * Hook for handling canvas resize to match window size
  */
 export const useCanvasResize = (
-  canvasRef: React.RefObject<HTMLCanvasElement>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
 ) => {
   useEffect(() => {
     const canvas = canvasRef.current;

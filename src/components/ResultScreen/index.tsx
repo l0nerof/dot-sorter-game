@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import type { BestScoreType } from "../../types";
 import { getBestScore, saveBestScore } from "../../utils/bestScore";
 import Button from "../Button";
 import Hint from "./components/Hint";
+import Record from "./components/Record";
 
 type ResultScreenProps = {
   time: number;
@@ -12,13 +14,13 @@ function ResultScreen({ time, onRestart }: ResultScreenProps) {
   // Format the time (seconds with one decimal place)
   const formattedTime = time.toFixed(1);
   const [isNewRecord, setIsNewRecord] = useState(false);
-  const [previousBest, setPreviousBest] = useState<number | null>(null);
+  const [previousBest, setPreviousBest] = useState<BestScoreType | null>(null);
 
   useEffect(() => {
     // Get previous best before saving
     const oldBest = getBestScore();
     if (oldBest) {
-      setPreviousBest(oldBest.time);
+      setPreviousBest(oldBest);
     }
 
     // Save the score and check if it's a new record
@@ -43,19 +45,7 @@ function ResultScreen({ time, onRestart }: ResultScreenProps) {
             <span className="text-5xl">с</span>
           </p>
 
-          {isNewRecord && (
-            <div className="animate-bounce rounded-full border border-yellow-400/50 bg-yellow-400/20 px-4 py-2">
-              <p className="text-lg font-bold text-yellow-400">
-                🏆 Новий рекорд! 🏆
-              </p>
-            </div>
-          )}
-
-          {!isNewRecord && previousBest !== null && (
-            <p className="text-sm text-white/50">
-              Найкращий час: {previousBest.toFixed(1)}с
-            </p>
-          )}
+          <Record isNewRecord={isNewRecord} previousBest={previousBest} />
         </div>
 
         <p className="text-2xl leading-relaxed text-white/80">

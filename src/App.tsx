@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Game from "./components/Game";
 import ResultScreen from "./components/ResultScreen";
 import SetupScreen from "./components/SetupScreen";
@@ -17,10 +17,10 @@ function App() {
     setGameState("playing");
   };
 
-  const handleFinish = (time: number) => {
+  const handleFinish = useCallback((time: number) => {
     setFinalTime(time);
     setGameState("finished");
-  };
+  }, []);
 
   const handleRestart = () => {
     setGameState("setup");

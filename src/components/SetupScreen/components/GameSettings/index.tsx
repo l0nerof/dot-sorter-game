@@ -88,7 +88,7 @@ function GameSettings({
               <span>⚠️</span>
               <span>Налаштування потребують коригування:</span>
             </div>
-            <ul className="ml-6 list-disc text-xs">
+            <ul className="list-disc text-xs">
               {duckCount !== totalDucks && (
                 <li>
                   Точки мають ділитися рівномірно - оберіть {totalDucks} замість{" "}
