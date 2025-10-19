@@ -43,7 +43,7 @@ function SetupScreen({ onStart }: SetupScreenProps) {
       <div className="flex max-w-2xl flex-col gap-6 rounded-3xl border border-white/10 bg-white/5 px-12 py-12 shadow-2xl backdrop-blur-xl">
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="animate-pulse bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-cyan-400 bg-clip-text text-center text-5xl font-bold text-transparent">
-            Duck Sorter Game
+            Dot Sorter Game
           </h1>
           <p className="text-center text-xl text-white/80">
             Керуй мишкою, щоб зібрати точки в групи за кольорами!
