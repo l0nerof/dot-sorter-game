@@ -1,4 +1,4 @@
-# 🦆 Duck Sorter Game
+# Dot Sorter Game
 
 An interactive game demonstrating the principles of **swarm behavior** and autonomous agents. Use your mouse to gather colored dots into groups!
 
